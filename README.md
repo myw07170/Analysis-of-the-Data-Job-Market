@@ -11,10 +11,10 @@ The data is sourced from [Luke Barousse's Python Course](https://lukebarousse.co
 
 Below are the questions I want to answer in my project:
 
-1. What are the skills most in demand for the top 3 most popular data roles?
-2. How are in-demand skills trending for Data Analysts?
-3. How well do jobs and skills pay for Data Analysts?
-4. What are the optimal skills for data analysts to learn? (High Demand AND High Paying) 
+1. What are the skills most in demand for the top 3 most popular data roles? [1_Skills_Demand.ipynb](1_Skills_Demand.ipynb)
+2. How are in-demand skills trending for Data Analysts? [2_Skills_Trend.ipynb](2_Skills_Trend.ipynb)
+3. How well do jobs and skills pay for Data Analysts? [3_Salary_Analysis.ipynb](3_Salary_Analysis.ipynb)
+4. What are the optimal skills for data analysts to learn? (High Demand AND High Paying) [4_Optimal_Skills.ipynb](4_Optimal_Skills.ipynb)
 
 ## Tools I Used
 
@@ -54,12 +54,15 @@ df['job_skills'] = df['job_skills'].apply(lambda x: ast.literal_eval(x) if pd.no
 ```
 
 ## Exploratory Data Analysis
-Before diving into the main questions, I performed an initial exploratory data analysis to understand the landscape of the job market. This involved looking at the distribution of job titles, locations, and common benefits. The full analysis can be found in the 0_Exploratory_Data_Analysis.ipynb notebook.
+Before diving into the main questions, I performed an initial exploratory data analysis to understand the landscape of the job market. This involved looking at the distribution of job titles, locations, and common benefits. The full analysis can be found in the [0_Exploratory_Data_Analysis.ipynb](0_Exploratory_Data_Analysis.ipynb) notebook.
 
 ### Key Findings:
 - **Job Titles**: Data Analyst, Data Scientist, and Data Engineer are the most frequent job titles.
+![Number of Jobs per Job Title](images/0_num_job_title.png)
 - **Locations**: The United States dominates the job market in this dataset, followed by a significant number of postings in other global locations.
+![Number of Jobs per Country](images/0_num_job_country.png)
 - **Job Benefits**: A large majority of job postings do not explicitly mention health insurance or a degree requirement. However, "work from home" is offered in about one-third of the roles, indicating a significant trend toward remote work.
+![Job Benefits](images/0_job_benefit.png)
 
 ### Filter US Jobs
 
@@ -75,25 +78,15 @@ Each Jupyter notebook for this project aimed at investigating specific aspects o
 
 ### 1. What are the most demanded skills for the top 3 most popular data roles?
 
-To find the most demanded skills, I filtered for the top 3 most popular data roles: Data Analyst, Data Scientist, and Data Engineer. I then identified the top 5 skills for each of these roles. This analysis highlights the core competencies required for each job title, showing which skills job-seekers should prioritize depending on their target role.
+To find the most demanded skills, I filtered for the top 3 most popular data roles: **Data Analyst, Data Scientist, and Data Engineer**. I then identified the **top 5 skills** for each of these roles. This analysis highlights the core competencies required for each job title, showing which skills job-seekers should prioritize depending on their target role.
 
 View my notebook with detailed steps here: [1_Skills_Demand](1_Skills_Demand.ipynb).
 
-#### Visualize Data
+#### Visualize Data Results
 
-```python
-fig, ax = plt.subplots(len(job_titles), 1)
+![Counts of Skills Requested in US Job Postings](images/1_counts_of_skills.png)
 
-for i, job_title in enumerate(job_titles):
-    df_plot = df_skills_perc[df_skills_perc['job_title_short'] == job_title].head(5)[::-1]
-    sns.barplot(data=df_plot, x='skill_percent', y='job_skills', ax=ax[i], hue='skill_count', palette='dark:b_r')
-
-plt.show()
-```
-
-#### Results
-
-![Likelihood of Skills Requested in the US Job Postings](images/Likelihood_of_Skills_Requested_in_US_Job_Postings.png)
+![Likelihood of Skills Requested in US Job Postings](images\1_likelihood_skill.png)
 
 *Bar graph visualizing the salary for the top 3 data roles and their top 5 skills associated with each.*
 
@@ -124,7 +117,8 @@ plt.show()
 
 #### Results
 
-![Trending Top Skills for Data Analysts in the US](images/Trending_Top_Skills_for_Data_Analysts_in_the_US.png)  
+![Trending Top Skills for Data Analysts in the US](images\2_trend_skills_DA.png)  
+
 *Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
 
 #### Insights:
@@ -151,7 +145,8 @@ plt.show()
 
 ##### Results
 
-![Salary Distributions of Data Jobs in the US](images/Salary_Distributions_of_Data_Jobs_in_the_US.png)  
+![Salary Distributions of Data Jobs in the US](images\3_salary_distribution.png)  
+
 *Box plot visualizing the salary distributions for the top 6 data job titles.*
 
 ##### Insights
@@ -184,7 +179,7 @@ plt.show()
 
 ##### Results
 
-![The Highest Paid & Most In-Demand Skills for Data Analysts in the US](images/Highest_Paid_and_Most_In_Demand_Skills_for_Data_Analysts_in_the_US.png)
+![The Highest Paid & Most In-Demand Skills for Data Analysts in the US](images\3_high_paid_skills.png)
 *Two bar graphs visualizing the highest-paid skills versus the most in-demand skills for data analysts in the US.*
 
 ##### Insights:
@@ -217,12 +212,12 @@ sns.scatterplot(
     legend='full'
 )
 plt.show()
-
 ```
 
 ##### Results
 
-![Most Optimal Skills for Data Analysts in the US](images/Most_Optimal_Skills_for_Data_Analysts_in_the_US.png)    
+![Most Optimal Skills for Data Analysts in the US](images/4_optimal_skills_DA.png)
+
 *A scatter plot visualizing the most optimal skills (high-paying & high-demand) for data analysts in the US, with color labels for technology.*
 
 ##### Insights:
@@ -257,7 +252,9 @@ plt.show()
 
 ##### Results
 
-![Most Optimal Skills for Data Analysts in the US with Coloring by Technology](images/Most_Optimal_Skills_for_Data_Analysts_in_the_US_with_Coloring_by_Technology.png)  
+![Most Optimal Skills for Data Analysts in the US with Coloring by Technology](images/4_optimal_skills_DA_tech.png) 
+
+
 *A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US with color labels for technology.*
 
 ##### Insights:
